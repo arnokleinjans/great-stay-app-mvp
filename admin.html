@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Stay - Host Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        :root {
+            --primary-color: #4A5D23;
+            --bg-color: #F8F9FA;
+            --card-bg: #FFFFFF;
+            --text-primary: #2C3E2D;
+            --border-color: #E2E8F0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"],
+        input[type="url"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .success-msg {
+            color: #2e7d32;
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            font-weight: 600;
+        }
+
+        .view-app-btn {
+            background-color: #8B5A2B;
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <ion-icon name="leaf" style="font-size: 2rem; color: var(--primary-color);"></ion-icon>
+            <h1>Host Dashboard</h1>
+            <a href="index.html" target="_blank" class="view-app-btn">
+                <ion-icon name="phone-portrait-outline"></ion-icon> Bekijk Gasten App
+            </a>
+        </header>
+
+        <div id="success-message" class="success-msg">
+            <ion-icon name="checkmark-circle"></ion-icon> Wijzigingen succesvol opgeslagen! De gasten-app is direct
+            geüpdatet.
+        </div>
+
+        <form id="admin-form">
+            <!-- Accommodatie Info -->
+            <div class="card">
+                <h2>Accommodatie Details</h2>
+                <div class="form-group">
+                    <label>Naam Accommodatie</label>
+                    <input type="text" id="prop-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Header Afbeelding (URL link)</label>
+                    <input type="url" id="prop-header-image" required>
+                </div>
+            </div>
+
+            <!-- WiFi -->
+            <div class="card">
+                <h2>WiFi Instellingen</h2>
+                <div class="form-group">
+                    <label>Netwerk Naam (SSID)</label>
+                    <input type="text" id="wifi-network" required>
+                </div>
+                <div class="form-group">
+                    <label>Wachtwoord</label>
+                    <input type="text" id="wifi-password" required>
+                </div>
+            </div>
+
+            <!-- Eerste Huisregel (Simpel gehouden voor MVP) -->
+            <div class="card">
+                <h2>Belangrijkste Huisregel</h2>
+                <div class="form-group">
+                    <label>Titel</label>
+                    <input type="text" id="rule-title" required>
+                </div>
+                <div class="form-group">
+                    <label>Beschrijving</label>
+                    <textarea id="rule-desc" required></textarea>
+                </div>
+            </div>
+
+            <!-- Video Instructies -->
+            <div class="card">
+                <h2>Video Instructies</h2>
+                <div id="video-list">
+                    <!-- Videos worden hier via Javascript geladen -->
+                </div>
+                <button type="button" class="btn" onclick="addVideoField()"
+                    style="background-color: #6B705C; margin-top: 15px; font-size: 0.9rem; padding: 10px 15px;">
+                    <ion-icon name="add-circle-outline"></ion-icon> Nieuwe video toevoegen
+                </button>
+            </div>
+
+            <button type="submit" class="btn">
+                <ion-icon name="save-outline"></ion-icon> Opslaan & Publiceren
+            </button>
+        </form>
+    </div>
+
+    <script src="mockData.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>

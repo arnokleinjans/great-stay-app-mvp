@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Great Stay - Natuurhuisje 'De Rust'</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <header class="app-header" id="app-header">
+            <div class="header-overlay">
+                <div class="welcome-text">
+                    <p class="greeting" id="greeting-text">Welkom terug</p>
+                    <h1 id="property-name">Accommodatie</h1>
+                </div>
+            </div>
+        </header>
+
+        <main class="app-content" id="main-content">
+            <!-- Content gets injected here by app.js -->
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item active" data-tab="home">
+                <ion-icon name="home-outline"></ion-icon>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item" data-tab="info">
+                <ion-icon name="information-circle-outline"></ion-icon>
+                <span>Info & Regels</span>
+            </a>
+            <a href="#" class="nav-item" data-tab="omgeving">
+                <ion-icon name="map-outline"></ion-icon>
+                <span>Omgeving</span>
+            </a>
+            <a href="#" class="nav-item" data-tab="contact">
+                <ion-icon name="chatbubbles-outline"></ion-icon>
+                <span>Contact</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Modals, like WiFi reveal -->
+    <div id="wifi-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>WiFi Gegevens</h2>
+            <div class="wifi-details">
+                <p><strong>Netwerk:</strong> <span id="wifi-network"></span></p>
+                <p><strong>Wachtwoord:</strong> <span id="wifi-password"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="modal">
+        <div class="modal-content" style="padding: 15px; width: 95%;">
+            <span class="close-video-btn"
+                style="position: absolute; top: 10px; right: 15px; font-size: 1.8rem; cursor: pointer; color: var(--text-secondary); z-index: 10;">&times;</span>
+            <h2 style="margin-bottom: 15px; font-size: 1.2rem;">Instructie Video</h2>
+            <div
+                style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000;">
+                <iframe id="video-iframe" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src=""
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="mockData.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
