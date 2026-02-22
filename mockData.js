@@ -6,7 +6,7 @@ const defaultAppData = {
         "checkOut": "2026-02-25"
     },
     "property": {
-        "name": "Veluwe droom chalet",
+        "name": "Veluwe droom chalet?",
         "headerImage": "https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=1000&auto=format&fit=crop",
         "wifi": {
             "network": "DeRust_Gasten",
