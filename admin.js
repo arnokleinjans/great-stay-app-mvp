@@ -107,3 +107,34 @@ document.getElementById('admin-form').addEventListener('submit', (e) => {
         msg.style.display = 'none';
     }, 3000);
 });
+
+// Download mockData.js functionality
+document.getElementById('download-btn').addEventListener('click', () => {
+    // We need to recreate the mockData.js file format exactly
+    const fileContent = `// Dit simuleert de data die uit het CMS van de verhuurder komt.
+const defaultAppData = ${JSON.stringify(currentData, null, 4)};
+
+// De actieve appData. We kijken of de host via admin.html iets in de browser (localStorage) heeft opgeslagen.
+let appData = defaultAppData;
+if (localStorage.getItem('greatStayData')) {
+    appData = JSON.parse(localStorage.getItem('greatStayData'));
+}
+`;
+
+    // Create a Blob with the content
+    const blob = new Blob([fileContent], { type: 'text/javascript' });
+    const url = URL.createObjectURL(blob);
+
+    // Create a temporary link to trigger the download
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'mockData.js';
+    document.body.appendChild(a);
+    a.click();
+
+    // Clean up
+    setTimeout(() => {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+    }, 0);
+});
