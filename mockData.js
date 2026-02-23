@@ -70,6 +70,12 @@ const appData = {
             "title": "Sleutelkastje",
             "subtitle": "Het sleutelkastje kun je vinden....",
             "action": "none"
+        },
+        {
+            "icon": "cutlery.svg",
+            "title": "Lekker Eten",
+            "subtitle": "Check onze lokale restaurant tips!",
+            "action": "none"
         }
     ]
 };

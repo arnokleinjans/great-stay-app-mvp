@@ -25,6 +25,18 @@ class CustomHandler(http.server.SimpleHTTPRequestHandler):
             self.end_headers()
             import json
             self.wfile.write(json.dumps(images).encode('utf-8'))
+        elif self.path == '/api/icons':
+            icons = []
+            if os.path.exists('images/icons'):
+                for f in os.listdir('images/icons'):
+                    if f.lower().endswith('.svg') and os.path.isfile(os.path.join('images/icons', f)):
+                        icons.append(f)
+            
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            import json
+            self.wfile.write(json.dumps(icons).encode('utf-8'))
         else:
             super().do_GET()
 

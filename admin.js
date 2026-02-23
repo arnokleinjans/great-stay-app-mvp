@@ -3,6 +3,7 @@
 let currentData = appData; // appData will be loaded from mockData.js
 
 let globalAvailableImages = [];
+let globalAvailableIcons = [];
 
 // Initialize admin panel with current data
 document.addEventListener('DOMContentLoaded', async () => {
@@ -12,6 +13,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         globalAvailableImages = await response.json();
     } catch (e) {
         console.error("Could not fetch images", e);
+    }
+
+    // Fetch available icons
+    try {
+        const response = await fetch('http://localhost:8002/api/icons');
+        globalAvailableIcons = await response.json();
+    } catch (e) {
+        console.error("Could not fetch icons", e);
     }
 
     // Populate forms
@@ -33,14 +42,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // --- Snel Inzicht Functionaliteit ---
-const iconOptions = [
-    { value: 'wifi.svg', label: 'WiFi Symbool' },
-    { value: 'key.svg', label: 'Sleutel Symbool' },
-    { value: 'clock.svg', label: 'Klok Symbool' },
-    { value: 'leaf.svg', label: 'Blaadje Symbool' },
-    { value: 'info.svg', label: 'Informatie Symbool' },
-    { value: 'phone.svg', label: 'Telefoon Symbool' }
-];
 
 window.addInsightField = function () {
     saveInsightInputs();
@@ -61,7 +62,7 @@ function renderInsightFields() {
     const list = document.getElementById('insight-list');
     list.innerHTML = '';
     (currentData.insights || []).forEach((item, index) => {
-        const selectHtml = iconOptions.map(opt => `<option value="${opt.value}" ${item.icon === opt.value ? 'selected' : ''}>${opt.label}</option>`).join('');
+        const selectHtml = globalAvailableIcons.map(icon => `<option value="${icon}" ${item.icon === icon ? 'selected' : ''}>${icon}</option>`).join('');
         const html = `
             <div class="video-item" style="border: 1px solid var(--border-color); padding: 15px; border-radius: 8px; margin-bottom: 15px; position: relative;">
                 <button type="button" onclick="removeInsightField(${index})" style="position: absolute; right: 10px; top: 10px; background: none; border: none; color: #dc3545; cursor: pointer;">
