@@ -1,7 +1,44 @@
 // Initialize app with mock data
 document.addEventListener('DOMContentLoaded', () => {
-    initApp();
+    initSecurity();
 });
+
+// --- Login Logic ---
+function initSecurity() {
+    initApp(); // Prepare data in the background
+
+    // Check if device is already unlocked for this specific code
+    const savedCode = localStorage.getItem('greatStayUnlocked');
+    if (savedCode && savedCode === appData.accessCode) {
+        unlockApp();
+    } else {
+        // Show login screen, hide app
+        document.getElementById('login-screen').style.display = 'flex';
+        document.getElementById('main-app-container').style.display = 'none';
+
+        // Also set the correct property name on the login screen
+        document.getElementById('login-property-name').innerText = appData.property.name;
+    }
+}
+
+window.checkAccessCode = function () {
+    const userInput = document.getElementById('guest-access-code').value.trim();
+    const errorMsg = document.getElementById('login-error');
+
+    // Using toUpperCase() so it's case insensitive
+    if (userInput.toUpperCase() === appData.accessCode.toUpperCase()) {
+        localStorage.setItem('greatStayUnlocked', appData.accessCode);
+        errorMsg.style.display = 'none';
+        unlockApp();
+    } else {
+        errorMsg.style.display = 'block';
+    }
+}
+
+function unlockApp() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('main-app-container').style.display = 'flex';
+}
 
 function initApp() {
     // Set Header Info
@@ -24,20 +61,18 @@ function renderHomeView() {
         <div class="tab-content active" id="view-home">
             <h2 style="margin-bottom: 20px;">Snel inzicht</h2>
             
-            <div class="card clickable" onclick="openWifiModal()">
-                <div class="icon-wrapper"><ion-icon name="wifi-outline"></ion-icon></div>
-                <div class="card-content">
-                    <h3>WiFi Netwerk</h3>
-                    <p>Tik om code te zien</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="icon-wrapper"><ion-icon name="key-outline"></ion-icon></div>
-                <div class="card-content">
-                    <h3>Uitchecken</h3>
-                    <p>Morgen voor 10:00</p>
-                </div>
+            <div id="insights-container" style="display: flex; flex-direction: column; gap: 16px;">
+                ${appData.insights ? appData.insights.map(item => `
+                    <div class="card ${item.action !== 'none' ? 'clickable' : ''}" ${item.action === 'wifi-modal' ? 'onclick="openWifiModal()"' : ''}>
+                        <div class="icon-wrapper">
+                            <img src="images/icons/${item.icon}" alt="${item.title}" style="width: 24px; height: 24px; filter: invert(34%) sepia(10%) saturate(2256%) hue-rotate(44deg) brightness(97%) contrast(85%);">
+                        </div>
+                        <div class="card-content">
+                            <h3>${item.title}</h3>
+                            <p>${item.subtitle}</p>
+                        </div>
+                    </div>
+                `).join('') : ''}
             </div>
 
             <h2 style="margin-top: 30px; margin-bottom: 20px;">Video Instructies</h2>

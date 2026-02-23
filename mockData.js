@@ -1,13 +1,14 @@
 // Dit simuleert de data die uit het CMS van de verhuurder komt.
-const defaultAppData = {
+const appData = {
+    "accessCode": "VELUWE2026",
     "guest": {
         "name": "Arno en Kitty",
         "checkIn": "2026-02-22",
         "checkOut": "2026-02-25"
     },
     "property": {
-        "name": "Veluwe droom chalet?",
-        "headerImage": "https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=1000&auto=format&fit=crop",
+        "name": "Veluwe Droom Chalet",
+        "headerImage": "images/Boshuisje.jpg",
         "wifi": {
             "network": "DeRust_Gasten",
             "password": "BomenZijnFijn2026"
@@ -20,26 +21,22 @@ const defaultAppData = {
     },
     "rules": [
         {
-            "title": "Inchecken & Uitchecken",
-            "desc": "Inchecken na 15:00. Uitchecken voor 10:00. De sleutel mag dan weer in het kastje."
-        },
-        {
             "title": "Afvalscheiding",
             "desc": "Groenbak achter het schuurtje. Papier in de blauwe bak. Restafval in de grijze bak."
         },
         {
-            "title": "Hottub",
+            "title": "Hottubs",
             "desc": "Gebruik op eigen risico. Laat het deksel er altijd op na gebruik ivm warmteverlies."
         },
         {
-            "title": "Feestjes & Geluid",
-            "desc": "Geen feesten. Vanaf 22:00 graag stilte om van de natuur te genieten."
+            "title": "Test",
+            "desc": "Test"
         }
     ],
     "videos": [
         {
             "title": "vakantiehuisje",
-            "thumb": "https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=1000&auto=format&fit=crop",
+            "thumb": "images/Boshuisje.jpg",
             "url": "https://www.youtube.com/watch?v=S1WnqtMAeS4"
         }
     ],
@@ -47,18 +44,26 @@ const defaultAppData = {
         {
             "name": "Pannenkoekenboerderij De Boswachter",
             "desc": "Heerlijk voor de kinderen. 5 minuten fietsen.",
-            "url": "#"
+            "url": "https://www.nu.nl/"
         },
         {
-            "name": "Bistro 't Groene Woud",
-            "desc": "Iets luxer dineren. Reserveren aangeraden.",
-            "url": "#"
+            "name": "Bar het suffertje",
+            "desc": "testbar",
+            "url": "https://www.nu.nl/"
+        }
+    ],
+    "insights": [
+        {
+            "icon": "wifi.svg",
+            "title": "Wifi",
+            "subtitle": "test",
+            "action": "wifi-modal"
+        },
+        {
+            "icon": "key.svg",
+            "title": "In- en uitchecken",
+            "subtitle": "Inchecken kan vanaf 15.00 uur en gaat contactloos via een sleutelkastje. Het uitchecken is uiterlijk om 10.30 uur. ",
+            "action": "none"
         }
     ]
 };
-
-// De actieve appData. We kijken of de host via admin.html iets in de browser (localStorage) heeft opgeslagen.
-let appData = defaultAppData;
-if (localStorage.getItem('greatStayData')) {
-    appData = JSON.parse(localStorage.getItem('greatStayData'));
-}

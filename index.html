@@ -14,8 +14,27 @@
 </head>
 
 <body>
+    <!-- Login Screen Overlay -->
+    <div id="login-screen" class="login-overlay">
+        <div class="login-box">
+            <h1 style="color: var(--primary-color); font-family: 'Lora', serif; font-size: 1.8rem; margin-bottom: 5px;">
+                Welkom bij</h1>
+            <h2 id="login-property-name" style="color: var(--text-color); font-size: 1.2rem; margin-bottom: 25px;">Onze
+                Accommodatie</h2>
+            <p style="margin-bottom: 15px; color: var(--text-secondary); font-size: 0.95rem;">Voer uw geheime
+                toegangscode in om de welkomst-app te openen.</p>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <input type="text" id="guest-access-code" placeholder="Toegangscode"
+                    style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; text-align: center; text-transform: uppercase;">
+            </div>
+            <p id="login-error" style="color: #d9534f; display: none; margin-bottom: 15px; font-size: 0.9rem;">
+                Incorrecte code. Probeer het opnieuw.</p>
+            <button class="btn" style="background-color: var(--primary-color); color: white;"
+                onclick="checkAccessCode()"><ion-icon name="key-outline"></ion-icon> Open App</button>
+        </div>
+    </div>
 
-    <div class="app-container">
+    <div class="app-container" id="main-app-container" style="display: none;">
 
         <header class="app-header" id="app-header">
             <div class="header-overlay">

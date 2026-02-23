@@ -148,8 +148,17 @@
                     <input type="text" id="prop-name" required>
                 </div>
                 <div class="form-group">
-                    <label>Header Afbeelding (URL link)</label>
-                    <input type="url" id="prop-header-image" required>
+                    <label>Header Afbeelding</label>
+                    <select id="prop-header-image"
+                        style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); font-family: 'Nunito', sans-serif;">
+                        <option value="">Laden...</option>
+                    </select>
+                </div>
+                <div class="form-group"
+                    style="margin-top: 15px; border-top: 1px dashed var(--border-color); padding-top: 15px;">
+                    <label style="color: #d9534f;"><ion-icon name="lock-closed-outline"></ion-icon> Geheime Toegangscode
+                        (Voor gasten)</label>
+                    <input type="text" id="access-code" required placeholder="Bijv. JANSEN2026">
                 </div>
             </div>
 
@@ -166,17 +175,42 @@
                 </div>
             </div>
 
-            <!-- Eerste Huisregel (Simpel gehouden voor MVP) -->
+            <!-- Snel Inzicht -->
             <div class="card">
-                <h2>Belangrijkste Huisregel</h2>
-                <div class="form-group">
-                    <label>Titel</label>
-                    <input type="text" id="rule-title" required>
+                <h2>Snel Inzicht</h2>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 15px;">Kies een icoon, een
+                    titel en een subtekst. (Let op: 'WiFi Netwerk' en 'Uitchecken' zijn standaard).</p>
+                <div id="insight-list">
+                    <!-- Insights worden hier geladen -->
                 </div>
-                <div class="form-group">
-                    <label>Beschrijving</label>
-                    <textarea id="rule-desc" required></textarea>
+                <button type="button" class="btn" onclick="addInsightField()"
+                    style="background-color: #6B705C; margin-top: 15px; font-size: 0.9rem; padding: 10px 15px;">
+                    <ion-icon name="add-circle-outline"></ion-icon> Nieuw inzicht toevoegen
+                </button>
+            </div>
+
+            <!-- Huisregels -->
+            <div class="card">
+                <h2>Info & Huisregels</h2>
+                <div id="rule-list">
+                    <!-- Regels worden hier geladen -->
                 </div>
+                <button type="button" class="btn" onclick="addRuleField()"
+                    style="background-color: #6B705C; margin-top: 15px; font-size: 0.9rem; padding: 10px 15px;">
+                    <ion-icon name="add-circle-outline"></ion-icon> Nieuwe huisregel toevoegen
+                </button>
+            </div>
+
+            <!-- Lokale Tips -->
+            <div class="card">
+                <h2>Lokale Tips (Omgeving)</h2>
+                <div id="tip-list">
+                    <!-- Tips worden hier geladen -->
+                </div>
+                <button type="button" class="btn" onclick="addTipField()"
+                    style="background-color: #6B705C; margin-top: 15px; font-size: 0.9rem; padding: 10px 15px;">
+                    <ion-icon name="add-circle-outline"></ion-icon> Nieuwe tip toevoegen
+                </button>
             </div>
 
             <!-- Video Instructies -->
@@ -191,13 +225,14 @@
                 </button>
             </div>
 
-            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                <button type="submit" class="btn">
-                    <ion-icon name="save-outline"></ion-icon> 1. Opslaan (Lokaal)
-                </button>
-                <button type="button" class="btn" id="download-btn" style="background-color: #0D8ABC;">
-                    <ion-icon name="download-outline"></ion-icon> 2. Download mockData.js
-                </button>
+            <div class="submit-section"
+                style="margin-top: 30px; text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center;">
+                <div style="display: flex; gap: 10px; justify-content: center; width: 100%;">
+                    <button type="submit" class="btn"><ion-icon name="save-outline"></ion-icon> 1. Opslaan
+                        (Lokaal)</button>
+                    <button type="button" class="btn" id="download-btn" style="background-color: #6B705C;"><ion-icon
+                            name="download-outline"></ion-icon> 2. Download mockData.js</button>
+                </div>
             </div>
         </form>
     </div>
