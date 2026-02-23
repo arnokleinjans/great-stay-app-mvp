@@ -60,9 +60,15 @@ const appData = {
             "action": "wifi-modal"
         },
         {
-            "icon": "key.svg",
+            "icon": "clock.svg",
             "title": "In- en uitchecken",
             "subtitle": "Inchecken kan vanaf 15.00 uur en gaat contactloos via een sleutelkastje. Het uitchecken is uiterlijk om 10.30 uur. ",
+            "action": "none"
+        },
+        {
+            "icon": "key.svg",
+            "title": "Sleutelkastje",
+            "subtitle": "Het sleutelkastje kun je vinden....",
             "action": "none"
         }
     ]
