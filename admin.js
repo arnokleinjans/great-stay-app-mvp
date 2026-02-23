@@ -1,6 +1,6 @@
 // Define default data (same as mockData.js) as fallback
 // In a real app, this would be fetched from a server API.
-let currentData = defaultAppData; // defaultAppData will be loaded from mockData.js
+let currentData = appData; // appData will be loaded from mockData.js
 
 let globalAvailableImages = [];
 
